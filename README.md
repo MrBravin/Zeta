@@ -13,7 +13,9 @@ Banco de Dados pode ser acessado através do link: https://drive.google.com/file
 # Introdução
 
 A predição de secas é um problema crítico em muitas partes do mundo, pois as secas podem causar impactos devastadores na agricultura, no abastecimento de água e no meio ambiente. Portanto, é fundamental entendermos como antecipar a ocorrência de secas, permitindo a implementação de medidas preventivas e o planejamento adequado. 
+
 Os dados de solo e clima desempenham um papel fundamental na compreensão e predição de secas. As características do solo, como o teor de umidade, a textura e a composição química, afetam diretamente a capacidade do solo de reter água e suportar a vegetação. Além disso, as condições climáticas, como a precipitação, a temperatura e a umidade do ar, têm um impacto direto na quantidade de água disponível no solo. 
+
 Ao utilizar um dataset que combina dados de solo e clima, podemos desenvolver modelos de machine learning mais robustos e precisos. Esses modelos podem capturar correlações complexas entre as variáveis ambientais e, assim, melhorar nossa capacidade de prever secas com antecedência. Além disso, a escolha desse tipo de dataset permite uma abordagem multidisciplinar, integrando conhecimentos. 
 
 OBS: README, temporário.
