@@ -20,6 +20,8 @@ Ao utilizar um dataset que combina dados de solo e clima, podemos desenvolver mo
 
 # Metodologia
 
-# Resultados e Conclusão
+# Resultados e Discussões
+
+# Conclusão
 
 OBS: README, temporário.
