@@ -1,8 +1,8 @@
 # Grupo Zeta
 Integrantes: 
-  Anna Karen Pinto 
-  Beatriz Borges 
-  Daniel Bravin  
+  Anna Karen Pinto;
+  Beatriz Borges;
+  Daniel Bravin; e
   Paulo Henrique dos Santos
   
 
