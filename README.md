@@ -6,9 +6,9 @@ Integrantes:
   Paulo Henrique dos Santos
   
 
-Esse trabalho tem objetivo de estudar e propor um modelo de apredizado de maquina capaz de estabelecer relações entre condições climaticas, tais como: temperatura, velocidade dos ventos, nível de umidade atmosferica, temperatura da superficie, precipitação e alguns outros. De entender como as variações climaticas progrediram atravéz dos anos e estabecer possíveis previsões. 
+Esse trabalho tem objetivo de estudar e propor um modelo de aprendizado de maquina capaz de estabelecer relações entre condições climáticas, tais como: temperatura, velocidade dos ventos, nível de umidade atmosférica, temperatura da superfície, precipitação e alguns outros. De entender como as variações climáticas progrediram através dos anos e estabelecer possíveis previsões. 
 
 Banco de Dados pode ser acessado através do link: https://drive.google.com/file/d/1t3dj_g1M8-sX_Siqc36_rSp_UACnj_bL/view?usp=drive_link
 
 
-obs: README, temporário. 
+OBS: README, temporário.
