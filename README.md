@@ -1,3 +1,22 @@
+<div align="center">
+  <h1>Ilum - Escola de Ciência</h1>
+</div>
+
+
+
+<div align="center">
+  <h2>  
+  Anna Karen Pinto;
+    
+  Beatriz Borges;
+  
+  Daniel Bravin; 
+  
+  Paulo Henrique dos Santos
+  </h2>
+</div>
+
+
 # Grupo Zeta
 Integrantes: 
   Anna Karen Pinto;
@@ -6,7 +25,10 @@ Integrantes:
   Paulo Henrique dos Santos
   
 
-Esse trabalho tem objetivo de estudar e propor um modelo de aprendizado de maquina capaz de estabelecer relações entre condições climáticas, tais como: temperatura, velocidade dos ventos, nível de umidade atmosférica, temperatura da superfície, precipitação e alguns outros. De entender como as variações climáticas progrediram através dos anos e estabelecer possíveis previsões. 
+Este trabalho visa explorar e propor um modelo de aprendizado de máquina destinado a identificar correlações entre diversas condições climáticas, incluindo temperatura, velocidade dos ventos, nível de umidade atmosférica, temperatura da superfície, precipitação e outros fatores relevantes. O objetivo principal é compreender a evolução das variações climáticas ao longo dos anos e, a partir dessas análises, formular previsões potenciais. 
+
+Destaca-se que este projeto é desenvolvido como produto da disciplina de Machine Learning, integrante do curso de Bacharelado em Ciência e Tecnologia, oferecido pela Universidade ILUM-Escola de Ciência, instituição acadêmica vinculada ao CNPEM (Centro Nacional de Pesquisa em Energia e Materiais). 
+
 
 Banco de Dados pode ser acessado através do link: https://drive.google.com/file/d/1t3dj_g1M8-sX_Siqc36_rSp_UACnj_bL/view?usp=drive_link
 
@@ -26,7 +48,7 @@ Ao utilizar um dataset que combina dados de solo e clima, pode-se desenvolver mo
 
 A escolha desse tipo de dataset permite uma abordagem multidisciplinar, integrando conhecimentos, sem perder a importância científica proposta pelo trabalho final.
 
-Os dados usados para a predição foram retirados da referência [1].
+Este dataset não existiria sem a disponibilização pública desses dados oferecidos pela NASA POWER Project (Projeto POWER da NASA) e pelos autores da US Drought Monitor (Monitor de Seca dos EUA). [1] [4] [5].
 
 # Metodologia
 
@@ -46,10 +68,15 @@ smoth
 
 # Referências
 
-[1] https://www.kaggle.com/datasets/cdminix/us-drought-meteorological-data/data
+[1] https://www.kaggle.com/datasets/cdminix/us-drought-meteorological-data/data 
 
 [2] https://cloud.google.com/learn/what-is-machine-learning?hl=pt-br
 
 [3] https://developers.google.com/search/docs/appearance/structured-data/dataset?hl=pt-br
+
+[4] https://power.larc.nasa.gov/
+
+[5] https://droughtmonitor.unl.edu/About/ContactUs.aspx
+
 
 OBS: README, temporário.
