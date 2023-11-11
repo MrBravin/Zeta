@@ -38,8 +38,6 @@ Banco de Dados pode ser acessado através do link: https://drive.google.com/file
 
 # Lista de Abreviaturas e Siglas
 
-**SOBRE DATASET**
-
 O dataset utilizado contém os seguintes atributos:
 
 WS10M_MIN = Velocidade do vento mínima a 10 metros (m/s)
