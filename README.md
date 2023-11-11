@@ -18,10 +18,17 @@ Os dados de solo e clima desempenham um papel fundamental na compreensão e pred
 
 Ao utilizar um dataset que combina dados de solo e clima, podemos desenvolver modelos de machine learning mais robustos e precisos. Esses modelos podem capturar correlações complexas entre as variáveis ambientais e, assim, melhorar nossa capacidade de prever secas com antecedência. Além disso, a escolha desse tipo de dataset permite uma abordagem multidisciplinar, integrando conhecimentos. 
 
+Os dados usados para a predição foram retirados da referência [].
+
 # Metodologia
 
 # Resultados e Discussões
 
 # Conclusão
+
+# Referências
+
+[1] https://www.kaggle.com/datasets/cdminix/us-drought-meteorological-data/data
+
 
 OBS: README, temporário.
