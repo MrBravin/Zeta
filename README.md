@@ -13,11 +13,8 @@
 <div align="center">
   <h4>  
   Anna Karen Pinto;
-  
   Beatriz Borges;
-  
   Daniel Bravin; 
-  
   Paulo Henrique dos Santos
   </h4>
 </div>
