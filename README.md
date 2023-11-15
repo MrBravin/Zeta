@@ -35,6 +35,8 @@ Banco de Dados pode ser acessado através do link: https://drive.google.com/file
 
 # Lista de Abreviaturas e Siglas
 
+PCA (Principal Component Analysis)
+
 O dataset utilizado contém os seguintes atributos:
 
 WS10M_MIN = Velocidade do vento mínima a 10 metros (m/s)
@@ -98,16 +100,45 @@ A escolha desse tipo de dataset permite uma abordagem multidisciplinar, integran
 Este dataset não existiria sem a disponibilização pública desses dados oferecidos pela NASA POWER Project (Projeto POWER da NASA) e pelos autores da US Drought Monitor (Monitor de Seca dos EUA). [1] [4] [5].
 
 # Metodologia
+Inicialmente, procedeu-se com a importação das bibliotecas necessárias e dos dados, os quais estavam subdivididos em conjuntos, de validação, treino e teste. Essa etapa visava preparar o terreno para uma análise exploratória a fim de compreender melhor os componentes dos dados e definir os passos subsequentes. Assim, decidiu-se utilizar apenas o subconjunto de validação devido à grande quantidade de dados disponíveis.
 
-Analise exploratória
+Durante a análise detalhada, identificou-se que o conjunto continha mais de 40 milhões de registros, caracterizando-se como séries temporais. Essa natureza dos dados apresentou desafios significativos em termos de complexidade e exigiu habilidades específicas. É importante ressaltar que o tratamento de séries temporais não estava previsto no conteúdo programático da disciplina, mas a natureza flexível do dataset permitiu a liberdade de interpretação fora desse contexto. Portanto, a análise foi conduzida sem considerar essa particularidade,  optando por trabalhar com um subconjunto reduzido de dados, pois identificou-se registros de diversas localidades, levando à decisão de remover as colunas relacionadas à data e localidade.
 
-Ao realizar uma análise detalhada dos dados, constatou-se que o conjunto continha mais de 40 milhões de registros e caracterizava-se como séries temporais, o que apresentava desafios significativos em termos de complexidade e exigência de habilidades, especialmente dentro do escopo da disciplina em questão. Diante dessa situação, decidiu-se trabalhar com uma fração representativa dos dados, optando por utilizar apenas 1/7 (um sétimo) do conjunto. Essa escolha foi fundamentada no fato de que os dados relacionados à seca eram coletados em intervalos de sete dias. Entretanto, é importante destacar que o tratamento de séries temporais não estava contemplado no conteúdo programático da disciplina, mas o dataset estudado permite a liberdade de interpretação fora do campo de séries temporais. Assim, optou-se por conduzir a análise sem levar em consideração essa particularidade, o que reforça a justificativa para a escolha de trabalhar com um subconjunto reduzido de dados. Além disso, observou-se que as informações incluíam registros de diversas localidades, decidiu-se remover as colunas relacionadas à data e localidade.
+Durante o processo, também foi constatada a presença de valores nulos (NaN), os quais foram exclusivamente encontrados na coluna "score" devido à coleta de dados em intervalos de sete dias. Esses valores foram removidos. A coluna "fips" (Federal Information Processing Standards), que representa os padrões desenvolvidos pelo National Institute of Standards and Technology, foi analisada para contabilizar o número de locais distintos catalogados nos dados, com o intuito de estabelecer relações entre indicadores climáticos. Entretanto, devido a esse propósito específico, a decisão foi tomada para remover essa coluna.
 
-Multicolinearidade
+Adicionalmente, foram verificados e removidos valores anômalos. A coluna "data" foi desmembrada em três novas colunas ("day", "month" e "year").
 
+A partir desse ponto, trabalhou-se com três tipos distintos de conjuntos de dados, cada um submetido a diferentes métodos de seleção de atributos:
 
+* Primeiro dataset: Este conjunto foi submetido a uma análise de multicolinearidade (Seleção VIF - Variance Inflation Factor).
+* Segundo dataset: O segundo conjunto foi redimensionado utilizando o método PCA (Principal Component Analysis), cuja principal função é vericar a quantidade de atributos que influenciam num determinado sistema.
+* Terceiro dataset: O terceiro conjunto foi submetido a ambos os métodos de seleção de atributos.
+  
+A escolha de realizar essa separação teve como objetivo determinar a ferramenta de seleção de atributos mais eficaz para o conjunto de dados escolhido, considerando as predições a serem realizadas. Após essa fase, os conjuntos foram divididos em treino e teste, dando início ao processo de realização das predições.
 
-smoth
+### Modelos de predição utilizados
+
+Existem vários modelos de predição disponíveis para uso. A escolha dos modelos abaixo foi baseada na premissa de avaliar como cada um reagia diante dos novos datasets. Cada modelo foi testado com os conjuntos de dados recém-criados, buscando realizar uma comparação de eficiência entre eles.
+
+**Mdelo KNN**
+
+Em síntese, o algoritmo KNN (K-Nearest Neighbors) busca classificar cada amostra de um conjunto de dados ao avaliar sua proximidade em relação aos vizinhos mais próximos. Caso a maioria desses vizinhos pertença a uma determinada classe, a amostra em análise será classificada nessa categoria específica. Este método fundamenta-se na ideia de que objetos semelhantes tendem a estar próximos uns dos outros no espaço de características, facilitando a atribuição de rótulos com base na predominância das classes dos vizinhos mais próximos.[7].
+
+**Árvore de Decisão**
+
+Conforme indicado pelo próprio nome, o algoritmo cria vários pontos de decisão, representados como "nós" na árvore. Em cada nó, a decisão é tomada para seguir por um caminho específico. Esses caminhos são representados pelos "ramos". Essa estrutura fundamental de uma árvore de decisão é composta por nós que desempenham o papel de conferenciar e indicar o direcionamento para os ramos subsequentes do fluxo de decisão.[10].
+
+**Floresta Aleatória**  
+
+A Floresta Aleatória, um algoritmo de aprendizagem supervisionada, cria uma "floresta" composta por uma combinação (ensemble) de árvores de decisão, frequentemente treinadas por meio do método de bagging. A essência do bagging reside na ideia central de que a fusão de modelos de aprendizado contribui para uma melhoria no resultado global.
+
+Uma vantagem da Floresta Aleatória é sua aplicabilidade tanto em tarefas de classificação quanto em tarefas de regressão, abrangendo a maioria dos sistemas atuais de aprendizado de máquina.[11].
+
+ *SMOTE*
+
+O SMOTE opera com a proposta fundamental de gerar exemplos sintéticos para a classe minoritária, visando ampliar sua representação no conjunto de dados. Esse processo envolve a criação de instâncias "sintéticas" entre pares de instâncias da classe minoritária. A técnica, por sua vez, calcula a diferença entre uma instância da classe minoritária e seus vizinhos mais próximos, gerando novas instâncias ponderadas por essa diferença.
+
+O SMOTE não é um modelo preditivo em si, mas sim como uma ferramenta projetada para equilibrar a quantidade de dados no conjunto de dados. No conjunto de dados utilizado sua aplicação combinou-se com uma segunda floresta aleatória. Esse procedimento serve para verificar se a introdução de dados sintéticos no conjunto de dados produz impactos significativos.
 
 # Resultados e Discussões
 
@@ -129,4 +160,14 @@ smoth
 
 ‌
 [6] Federal Information Processing Standards. Disponível em: <https://pt.wikipedia.org/wiki/Federal_Information_Processing_Standards>. Acesso em: 11 nov. 2023.
+
+[7] "O que é e como funciona o algoritmo KNN" | Didática Tech. Disponível em: <https://didatica.tech/o-que-e-e-como-funciona-o-algoritmo-knn/>. Acesso em: 15 nov. 2023.
+
+[8] "sklearn.neighbors.KNeighborsClassifier" | scikit-learn | Documentação. Disponível em: <https://scikit-learn.org/stable/modules/generated/sklearn.neighbors.KNeighborsClassifier.html>. Acesso em: 15 nove. 2023.
+
+[9] "sklearn.pipeline.Pipeline" | scikit-learn | Documentação. Disponível em: <https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html>. Acesso em: 15 nov. 2023.
+
+[10] "Como funciona o algoritmo Árvore de Decisão" | Didática Tech. Disponível em: <https://didatica.tech/como-funciona-o-algoritmo-arvore-de-decisao/>. Acesso em: 15 nov. 2023.
+
+[11]  "O Algoritmo da Floresta Aleatória" | Medium - Machina Sapiens. Disponível em: <https://medium.com/machina-sapiens/o-algoritmo-da-floresta-aleat%C3%B3ria-3545f6babdf8>. Acesso em: 15 nov. 2023.
 
