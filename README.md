@@ -87,7 +87,7 @@ A predição de secas é um problema crítico em muitas partes do mundo, pois as
 
 Os dados sobre solo e clima desempenham um papel fundamental na compreensão e predição de secas. As características do solo, como o teor de umidade, a textura e a composição química, afetam diretamente a capacidade do solo de reter água e suportar a vegetação. Além disso, as condições climáticas, como a precipitação, a temperatura e a umidade do ar, têm um impacto direto na quantidade de água disponível no solo. 
 
-A ciência que é utilizada para esta problemática é o Aprendizado de Máquina (Machine Learning), que é um subconjunto da Inteligência Artificial (IA) o qual permite que um sistema aprenda e melhore de forma autônoma usando redes neurais e aprendizado profundo, sem ser programado explicitamente, alimentando-o com grandes quantidades de dados. [2] Dessa forma, seria viável programar um algoritmo que tivesse os dados de solo e clima como entrada (input), e retornasse uma saída (output) da previsão de seca no local analisado. 
+A ciência que é utilizada para esta problemática é o Aprendizado de Máquina (Machine Learning), que é um subconjunto da Inteligência Artificial (IA) o qual permite que um sistema aprenda e melhore de forma autônoma usando redes neurais e aprendizado profundo, sem ser programado explicitamente, alimentando-o com grandes quantidades de dados. [2] Dessa forma, seria viável programar um algoritmo que tivesse os dados de solo e clima como entrada (input), e retornasse uma saída (output) da previsão de seca. 
 
 Esses dados podem ser coletados de diversas formas possíveis, variando de acordo com sua finalidade e recursos para a pesquisa. Entretanto, algo em comum com todo qualquer tipo de dado é que eles são armazenados em dataset. 
 
@@ -102,11 +102,13 @@ Este dataset não existiria sem a disponibilização pública desses dados ofere
 # Metodologia
 Inicialmente, procedeu-se com a importação das bibliotecas necessárias e dos dados, os quais estavam subdivididos em conjuntos, de validação, treino e teste. Essa etapa visava preparar o terreno para uma análise exploratória a fim de compreender melhor os componentes dos dados e definir os passos subsequentes. Assim, decidiu-se utilizar apenas o subconjunto de validação devido à grande quantidade de dados disponíveis.
 
-Durante a análise detalhada, identificou-se que o conjunto continha mais de 40 milhões de registros, caracterizando-se como séries temporais. Essa natureza dos dados apresentou desafios significativos em termos de complexidade e exigiu habilidades específicas. É importante ressaltar que o tratamento de séries temporais não estava previsto no conteúdo programático da disciplina, mas a natureza flexível do dataset permitiu a liberdade de interpretação fora desse contexto. Portanto, a análise foi conduzida sem considerar essa particularidade,  optando por trabalhar com um subconjunto reduzido de dados, pois identificou-se registros de diversas localidades, levando à decisão de remover as colunas relacionadas à data e localidade.
+Durante a análise detalhada, identificou-se que o conjunto continha mais de 40 milhões de registros, caracterizando-se como bigdata. Essa natureza dos dados apresentou desafios significativos em termos de complexidade e exigiu habilidades específicas. Além disso, devido a estrutura e caracterização dos dados, um modelo de previsão utilizando séries temporais também seria posível. É importante ressaltar que o tratamento de séries temporais não estava previsto no conteúdo programático da disciplina, mas a natureza flexível do dataset permitiu a liberdade de uma interpretação fora desse contexto. Portanto, o contexto da análise temporal dos dados (datação) não foi um atributo principal da predição, contudo o atributo data foi desmembrado e utilizado como alguns dos vários atributos no modelo de predição. 
 
-Durante o processo, também foi constatada a presença de valores nulos (NaN), os quais foram exclusivamente encontrados na coluna "score" devido à coleta de dados em intervalos de sete dias. Esses valores foram removidos. A coluna "fips" (Federal Information Processing Standards), que representa os padrões desenvolvidos pelo National Institute of Standards and Technology, foi analisada para contabilizar o número de locais distintos catalogados nos dados, com o intuito de estabelecer relações entre indicadores climáticos. Entretanto, devido a esse propósito específico, a decisão foi tomada para remover essa coluna.
+Durante o processo, também foi constatada a presença de valores nulos (NaN), os quais foram exclusivamente encontrados na coluna "score" devido à coleta de dados em intervalos de sete dias. Esses valores foram removidos. A coluna "fips" (Federal Information Processing Standards), que representa os padrões desenvolvidos pelo National Institute of Standards and Technology, foi analisada para contabilizar o número de locais distintos catalogados nos dados, com o intuito de estabelecer relações entre indicadores climáticos. Entretanto, devido a esse propósito específico, a decisão tomada foi a remoção da coluna, uma vez que a análise parcial das regiões não era um objetivo.
 
-Adicionalmente, foram verificados e removidos valores anômalos. A coluna "data" foi desmembrada em três novas colunas ("day", "month" e "year").
+Além disso, procedeu-se à identificação e eliminação de valores anômalos por meio do método de detecção de outliers utilizando o desvio padrão. Este método envolve a avaliação da distância de um dado específico em relação à média geral dos dados, sendo essa distância medida em unidades de desvio padrão.
+
+A coluna "data" foi desmembrada em três novas colunas ("day", "month" e "year"), como dito anteriormente.
 
 A partir desse ponto, trabalhou-se com três tipos distintos de conjuntos de dados, cada um submetido a diferentes métodos de seleção de atributos:
 
@@ -126,7 +128,7 @@ Em síntese, o algoritmo KNN (K-Nearest Neighbors) busca classificar cada amostr
 
 **Árvore de Decisão**
 
-Conforme indicado pelo próprio nome, o algoritmo cria vários pontos de decisão, representados como "nós" na árvore. Em cada nó, a decisão é tomada para seguir por um caminho específico. Esses caminhos são representados pelos "ramos". Essa estrutura fundamental de uma árvore de decisão é composta por nós que desempenham o papel de conferenciar e indicar o direcionamento para os ramos subsequentes do fluxo de decisão.[10].
+Conforme indicado pelo próprio nome, o algoritmo cria vários pontos de decisão, representados como "nós" na árvore. Em cada nó, a decisão é tomada para seguir por um caminho específico. Esses caminhos são representados pelos "ramos". Essa estrutura fundamental de uma árvore de decisão desempenham o papel de conferenciar e indicar o direcionamento para os ramos subsequentes do fluxo de decisão.[10].
 
 **Floresta Aleatória**  
 
@@ -138,7 +140,7 @@ Uma vantagem da Floresta Aleatória é sua aplicabilidade tanto em tarefas de cl
 
 O SMOTE opera com a proposta fundamental de gerar exemplos sintéticos para a classe minoritária, visando ampliar sua representação no conjunto de dados. Esse processo envolve a criação de instâncias "sintéticas" entre pares de instâncias da classe minoritária. A técnica, por sua vez, calcula a diferença entre uma instância da classe minoritária e seus vizinhos mais próximos, gerando novas instâncias ponderadas por essa diferença.
 
-O SMOTE não é um modelo preditivo em si, mas sim como uma ferramenta projetada para equilibrar a quantidade de dados no conjunto de dados. No conjunto de dados utilizado sua aplicação combinou-se com uma segunda floresta aleatória. Esse procedimento serve para verificar se a introdução de dados sintéticos no conjunto de dados produz impactos significativos.
+O SMOTE não é um modelo preditivo em si, mas sim uma ferramenta projetada para equilibrar a quantidade de dados no conjunto. No conjunto de dados utilizado sua aplicação combinou-se com uma segunda floresta aleatória. Esse procedimento serve para verificar se a introdução de dados sintéticos no conjunto de dados produz impactos significativos.
 
 # Resultados e Discussões
 
