@@ -33,7 +33,7 @@ Destaca-se que este projeto é desenvolvido como produto da disciplina de Machin
 # Importando Dados 
 
 * Baixe o arquivo intitulado "Trabalho_Machine_Learn.ipynb" desse github.
-* Acesse o link <https://www.kaggle.com/datasets/cdminix/us-drought-meteorological-data/data>.[1].
+* Acesse o link: <https://www.kaggle.com/datasets/cdminix/us-drought-meteorological-data/data>.[1].
 * Baixe a arquivo com o dataset. 
 * Da pasta baixada, deverá selecionar o arquivo intitulado 'validation_timeseries.csv' e colocá-lo na mesma pasta na qual o arquivo "Trabalho_Machine_Learn.ipynb".
 * Não é necessario remenomear o arquivo de dados. 
