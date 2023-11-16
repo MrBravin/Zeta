@@ -26,12 +26,17 @@
 
 # Resumo  
 
-Este trabalho visa explorar e propor um modelo de aprendizado de máquina destinado a identificar correlações entre diversas condições climáticas, incluindo temperatura, velocidade dos ventos, nível de umidade atmosférica, temperatura da superfície, precipitação e outros fatores relevantes. O objetivo principal é compreender a evolução das variações climáticas ao longo dos anos e, a partir dessas análises, formular previsões potenciais. 
+Este trabalho visa explorar e propor um modelo de aprendizado de máquina destinado a identificar correlações entre diversas condições climáticas, incluindo temperatura, velocidade dos ventos, nível de umidade atmosférica, temperatura da superfície, precipitação e outros fatores relevantes. O objetivo principal é utilizar modelos de predição a partir das análises de dados climáticos, comparando-os, para predizer níveis de secas. 
 
 Destaca-se que este projeto é desenvolvido como produto da disciplina de Machine Learning, integrante do curso de Bacharelado em Ciência e Tecnologia, oferecido pela Universidade ILUM-Escola de Ciência, instituição acadêmica vinculada ao CNPEM (Centro Nacional de Pesquisa em Energia e Materiais). 
 
+# Importando Dados 
 
-Banco de Dados pode ser acessado através do link: https://drive.google.com/file/d/1t3dj_g1M8-sX_Siqc36_rSp_UACnj_bL/view?usp=drive_link
+* Baixe o arquivo intitulado "Trabalho_Machine_Learn.ipynb" desse github.
+* Acesse o link <https://www.kaggle.com/datasets/cdminix/us-drought-meteorological-data/data>.[1].
+* Baixe a arquivo com o dataset. 
+* Da pasta baixada, deverá selecionar o arquivo intitulado 'validation_timeseries.csv' e colocá-lo na mesma pasta na qual o arquivo "Trabalho_Machine_Learn.ipynb".
+* Não é necessario remenomear o arquivo de dados. 
 
 # Lista de Abreviaturas e Siglas
 
@@ -102,7 +107,7 @@ Este dataset não existiria sem a disponibilização pública desses dados ofere
 # Metodologia
 Inicialmente, procedeu-se com a importação das bibliotecas necessárias e dos dados, os quais estavam subdivididos em conjuntos, de validação, treino e teste. Essa etapa visava preparar o terreno para uma análise exploratória a fim de compreender melhor os componentes dos dados e definir os passos subsequentes. Assim, decidiu-se utilizar apenas o subconjunto de validação devido à grande quantidade de dados disponíveis.
 
-Durante a análise detalhada, identificou-se que o conjunto continha mais de 40 milhões de registros, caracterizando-se como bigdata. Essa natureza dos dados apresentou desafios significativos em termos de complexidade e exigiu habilidades específicas. Além disso, devido a estrutura e caracterização dos dados, um modelo de previsão utilizando séries temporais também seria posível. É importante ressaltar que o tratamento de séries temporais não estava previsto no conteúdo programático da disciplina, mas a natureza flexível do dataset permitiu a liberdade de uma interpretação fora desse contexto. Portanto, o contexto da análise temporal dos dados (datação) não foi um atributo principal da predição, contudo o atributo data foi desmembrado e utilizado como alguns dos vários atributos no modelo de predição. 
+Durante a análise detalhada, identificou-se que o conjunto continha mais de 40 milhões de registros, caracterizando-se como bigdata. Essa natureza dos dados apresentou desafios significativos em termos de complexidade e exigiu habilidades específicas. Além disso, devido a estrutura e caracterização dos dados, um modelo de previsão utilizando séries temporais também seria possível. É importante ressaltar que o tratamento de séries temporais não estava previsto no conteúdo programático da disciplina, mas a natureza flexível do dataset permitiu a liberdade de uma interpretação fora desse contexto. Portanto, o contexto da análise temporal dos dados (datação) não foi um atributo principal da predição, contudo o atributo data foi desmembrado e utilizado como alguns dos vários atributos no modelo de predição. 
 
 Durante o processo, também foi constatada a presença de valores nulos (NaN), os quais foram exclusivamente encontrados na coluna "score" devido à coleta de dados em intervalos de sete dias. Esses valores foram removidos. A coluna "fips" (Federal Information Processing Standards), que representa os padrões desenvolvidos pelo National Institute of Standards and Technology, foi analisada para contabilizar o número de locais distintos catalogados nos dados, com o intuito de estabelecer relações entre indicadores climáticos. Entretanto, devido a esse propósito específico, a decisão tomada foi a remoção da coluna, uma vez que a análise parcial das regiões não era um objetivo.
 
@@ -113,7 +118,7 @@ A coluna "data" foi desmembrada em três novas colunas ("day", "month" e "year")
 A partir desse ponto, trabalhou-se com três tipos distintos de conjuntos de dados, cada um submetido a diferentes métodos de seleção de atributos:
 
 * Primeiro dataset: Este conjunto foi submetido a uma análise de multicolinearidade (Seleção VIF - Variance Inflation Factor).
-* Segundo dataset: O segundo conjunto foi redimensionado utilizando o método PCA (Principal Component Analysis), cuja principal função é vericar a quantidade de atributos que influenciam num determinado sistema.
+* Segundo dataset: O segundo conjunto foi redimensionado utilizando o método PCA (Principal Component Analysis), cuja principal função é verificar a quantidade de atributos que influenciam num determinado sistema.
 * Terceiro dataset: O terceiro conjunto foi submetido a ambos os métodos de seleção de atributos.
   
 A escolha de realizar essa separação teve como objetivo determinar a ferramenta de seleção de atributos mais eficaz para o conjunto de dados escolhido, considerando as predições a serem realizadas. Após essa fase, os conjuntos foram divididos em treino e teste, dando início ao processo de realização das predições.
@@ -122,7 +127,7 @@ A escolha de realizar essa separação teve como objetivo determinar a ferrament
 
 Existem vários modelos de predição disponíveis para uso. A escolha dos modelos abaixo foi baseada na premissa de avaliar como cada um reagia diante dos novos datasets. Cada modelo foi testado com os conjuntos de dados recém-criados, buscando realizar uma comparação de eficiência entre eles.
 
-**Mdelo KNN**
+**Modelo KNN**
 
 Em síntese, o algoritmo KNN (K-Nearest Neighbors) busca classificar cada amostra de um conjunto de dados ao avaliar sua proximidade em relação aos vizinhos mais próximos. Caso a maioria desses vizinhos pertença a uma determinada classe, a amostra em análise será classificada nessa categoria específica. Este método fundamenta-se na ideia de que objetos semelhantes tendem a estar próximos uns dos outros no espaço de características, facilitando a atribuição de rótulos com base na predominância das classes dos vizinhos mais próximos.[7].
 
@@ -144,13 +149,43 @@ O SMOTE não é um modelo preditivo em si, mas sim uma ferramenta projetada para
 
 # Resultados e Discussões
 
+As comparações de eficiência entre os modelos de predição foram conduzidas por meio do RMSE (Root Mean Squared Error), conhecido em português como Erro Quadrático Médio e SCORE. O RMSE é amplamente empregada na avaliação da precisão de modelos de regressão. Ele oferece uma medida da dispersão dos erros, indicando quão distantes as previsões do modelo estão em relação aos valores reais. Quanto menor o RMSE, melhor o desempenho do modelo, sinalizando que as previsões estão mais próximas dos valores reais. Já o Score, De maneira geral, o termo "score" em modelos de classificação refere-se a métricas que avaliam o desempenho do modelo na tarefa de atribuir rótulos de classe a amostras. Essas métricas são utilizadas para quantificar quão bem o modelo está fazendo suas previsões. Quanto mais próximo de 1 é o valor da quantificação, melhor o modelo.
+
+Ao explorar os modelos de previsão nos três conjuntos de dados distintos, pode-se ter uma compreensão da precisão de suas predições.
+
+Conforme mencionado anteriormente, há três conjuntos de dados, cada um tratado de maneiras diferentes. Três modelos distintos foram aplicados a cada conjunto de dados para comparação, e constatou-se que, para o modelo KNN, o conjunto de dados, ao ser analisado com o SCORE, que obteve a melhor pontuação foi aquele tratado apenas com VIF, alcançando uma precisão de 821.59. Os demais conjuntos, tratados apenas com PCA, obtiveram uma pontuação de 795.9, enquanto aqueles que receberam tratamento tanto de VIF quanto de PCA registraram uma pontuação de 795.9. Ao avaliar a precisão com base no RMSE, constatou-se que o desempenho superior foi alcançado pelo conjunto de dados tratado exclusivamente com VIF, apresentando 0.548. Os demais conjuntos obtiveram 0.574 ao aplicar apenas o PCA e 0.627 ao receber ambos os tratamentos.
+
+Para o modelo de Árvore de Decisão, ao analisar o SCORE, o conjunto de dados que obteve a melhor pontuação foi aquele tratado apenas com VIF, alcançando uma precisão de 0.802. Os demais conjuntos, tratados apenas com PCA, registraram uma pontuação de 0.793, enquanto aqueles que receberam tratamento tanto de VIF quanto de PCA obtiveram uma pontuação de 0.787. Ao avaliar a precisão com base no RMSE, constatou-se que o desempenho superior foi alcançado pelo conjunto de dados tratado exclusivamente com VIF, apresentando um valor de 0.588. Os demais conjuntos obtiveram 0.609 ao aplicar apenas o PCA e 0.631 ao receber ambos os tratamentos.
+
+Para o modelo de Floresta Aleatória, ao examinar o SCORE, o conjunto de dados que apresentou o desempenho mais destacado foi aquele tratado exclusivamente com VIF, atingindo uma precisão de 0.846. Nos outros conjuntos, que foram submetidos apenas ao PCA, a pontuação foi de 0.831, enquanto aqueles que receberam tratamento tanto de VIF quanto de PCA registraram um SCORE de 0.831. Ao considerar a precisão com base no RMSE, observou-se que o melhor desempenho foi alcançado pelo conjunto de dados tratado exclusivamente com VIF, com um valor de 0.463. Nos demais conjuntos, ao aplicar somente o PCA, o RMSE foi de 0.517, e ao receber ambos os tratamentos, o RMSE foi de 0.518.
+
+Os modelos de Floresta Aleatória, após o tratamento com SMOTE, apresentaram resultados idênticos para os três conjuntos de dados, tanto em SCORE quanto em RMSE.
+
 # Conclusão
+
+Os resultados obtidos ao explorar diferentes modelos de predição em conjuntos de dados tratados de maneiras distintas revelaram curiosidades sobre o desempenho desses algoritmos. Como visto, para o algoritmo KNN, o conjunto de dados tratado exclusivamente com VIF demonstrou uma precisão superior, destacando a eficácia desse método específico de tratamento. Já para o algoritmo de Árvore de Decisão e Floresta Aleatória, observou-se que o tratamento com VIF também proporcionou um desempenho superior, evidenciando a influência positiva desse método nesse contexto.
+
+É interessante notar que, ao aplicar o SMOTE aos modelos de Floresta Aleatória, os resultados foram consistentes entre os conjuntos de dados, indicando que essa técnica de balanceamento não teve um impacto diferenciado nos conjuntos analisados.
+
+A escolha adequada do método de tratamento de dados e do algoritmo pode ter um impacto significativo no desempenho dos modelos de Machine Learning. Cada abordagem tem suas vantagens e pode ser mais apropriada dependendo das características específicas do conjunto de dados e dos objetivos da análise. A análise cuidadosa desses resultados permite tomar decisões mais informadas na escolha e otimização de modelos para tarefas futuras.
+
+Portanto o melhor modelo para o conjunto de dados proposto nesse trabalho é o modelo de Floresta Aleatória com dados tratados com VIF. 
+
+# Planos futuros
+
+* Tentar abordar o mesmo dataset, porém agora com séries temporais para entender como funciona esse método de predição e como os dados se comportam diante disso;
+* Utilizar o mesmo modelo em dados brasileiros;
+
+# Curiosidades
+
+Ao conduzir a validação cruzada em todos os modelos, independentemente de aplicar o PCA ou a validação VIF, os hiperparâmetros otimizados pela validação cruzada permanecem consistentes. Essa consistência sugere uma estabilidade nos hiperparâmetros identificados, independentemente do método específico de tratamento de dados escolhido.
+Será se isso persiste em outros datasets ou apenas no nosso?
 
 # Referências
 
 [1] Predict Droughts using Weather & Soil Data. Disponível em: <https://www.kaggle.com/datasets/cdminix/us-drought-meteorological-data/data>. Acesso em: 11 nov. 2023.
 
-[2] O que é Machine Learning?  |  Google Cloud. Disponível em: <https://cloud.google.com/learn/what-is-machine-learning?hl=pt-br>. Acesso em: 11 nov. 2023.
+[2] O que é Machine Learning?  |  Google Cloud. Disponível em: <https://cloud.google.com/learn/w hat-is-machine-learning?hl=pt-br>. Acesso em: 11 nov. 2023.
 
 [3] Dados estruturados de conjunto de dados | Central da Pesquisa Google | Documentação. Disponível em: <https://developers.google.com/search/docs/appearance/structured-data/dataset?hl=pt-br>. Acesso em: 11 nov. 2023.
 
