@@ -153,11 +153,11 @@ As comparações de eficiência entre os modelos de predição foram conduzidas 
 
 Ao explorar os modelos de previsão nos três conjuntos de dados distintos, pode-se ter uma compreensão da precisão de suas predições.
 
-Conforme mencionado anteriormente, há três conjuntos de dados, cada um tratado de maneiras diferentes. Três modelos distintos foram aplicados a cada conjunto de dados para comparação, e constatou-se que, para o modelo KNN, o conjunto de dados, ao ser analisado com o SCORE, que obteve a melhor pontuação foi aquele tratado apenas com VIF, alcançando uma precisão de 821.59. Os demais conjuntos, tratados apenas com PCA, obtiveram uma pontuação de 795.9, enquanto aqueles que receberam tratamento tanto de VIF quanto de PCA registraram uma pontuação de 795.9.
+Conforme mencionado anteriormente, há três conjuntos de dados, cada um tratado de maneiras diferentes. Três modelos distintos foram aplicados a cada conjunto de dados para comparação, e constatou-se que, para o modelo KNN, o conjunto de dados, ao ser analisado com o SCORE, que obteve a melhor pontuação foi aquele tratado apenas com VIF, alcançando uma precisão de 0.821. Os demais conjuntos, tratados apenas com PCA, obtiveram uma pontuação de 0.814, enquanto aqueles que receberam tratamento tanto de VIF quanto de PCA registraram uma pontuação de 0.795.
 
-Para o modelo de Árvore de Decisão, ao analisar o SCORE, o conjunto de dados que obteve a melhor pontuação foi aquele tratado apenas com VIF, alcançando uma precisão de 0.802. Os demais conjuntos, tratados apenas com PCA, registraram uma pontuação de 0.793, enquanto aqueles que receberam tratamento tanto de VIF quanto de PCA obtiveram uma pontuação de 0.787.
+Para o modelo de Árvore de Decisão, ao analisar o SCORE, o conjunto de dados que obteve a melhor pontuação foi aquele tratado apenas com VIF, alcançando uma precisão de 0.803. Os demais conjuntos, tratados apenas com PCA, registraram uma pontuação de 0.793, enquanto aqueles que receberam tratamento tanto de VIF quanto de PCA obtiveram uma pontuação de 0.787.
 
-Para o modelo de Floresta Aleatória, ao examinar o SCORE, o conjunto de dados que apresentou o desempenho mais destacado foi aquele tratado exclusivamente com VIF, atingindo uma precisão de 0.846. Nos outros conjuntos, que foram submetidos apenas ao PCA, a pontuação foi de 0.831, enquanto aqueles que receberam tratamento tanto de VIF quanto de PCA registraram um SCORE de 0.831. 
+Para o modelo de Floresta Aleatória, ao examinar o SCORE, o conjunto de dados que apresentou o desempenho mais destacado foi aquele tratado exclusivamente com VIF, atingindo uma precisão de 0.846. Nos outros conjuntos, que foram submetidos apenas ao PCA, a pontuação foi de 0.830, enquanto aqueles que receberam tratamento tanto de VIF quanto de PCA registraram um SCORE de 0.831. 
 
 Os modelos de Floresta Aleatória, após o tratamento com SMOTE, apresentaram resultados idênticos para os três conjuntos de dados.
 
